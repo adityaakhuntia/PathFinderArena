@@ -8,8 +8,10 @@ from pathlib import Path
 from urllib.parse import urlparse
 
 
-BASE_DIR = Path(__file__).resolve().parent
-STATIC_DIR = BASE_DIR / "static"
+BACKEND_DIR = Path(__file__).resolve().parent
+PROJECT_ROOT = BACKEND_DIR.parent
+FRONTEND_DIR = PROJECT_ROOT / "frontend"
+STATIC_DIR = FRONTEND_DIR / "static"
 
 ALGORITHM_META = {
     "bfs": {
@@ -204,8 +206,7 @@ class ArenaHandler(BaseHTTPRequestHandler):
         self._set_headers(status=status, content_type="application/json; charset=utf-8")
         self.wfile.write(json.dumps(payload).encode("utf-8"))
 
-    def _serve_static(self, relative_path):
-        target = STATIC_DIR / relative_path
+    def _serve_file(self, target):
         if not target.exists() or not target.is_file():
             self._write_json({"error": "Not found"}, status=404)
             return
@@ -219,14 +220,13 @@ class ArenaHandler(BaseHTTPRequestHandler):
         self._set_headers(content_type=content_type)
         self.wfile.write(target.read_bytes())
 
-
     def do_GET(self):
         path = urlparse(self.path).path
         if path in {"/", "/index.html"}:
-            self._serve_static("index.html")
+            self._serve_file(FRONTEND_DIR / "index.html")
             return
         if path.startswith("/static/"):
-            self._serve_static(path.removeprefix("/static/"))
+            self._serve_file(STATIC_DIR / path.removeprefix("/static/"))
             return
         if path == "/api/health":
             self._write_json({"status": "ok"})
@@ -247,7 +247,6 @@ class ArenaHandler(BaseHTTPRequestHandler):
             )
             return
         self._write_json({"error": "Route not found"}, status=404)
-
 
     def do_POST(self):
         path = urlparse(self.path).path

@@ -12,6 +12,7 @@ const state = {
 const elements = {
   gridBoard: document.getElementById("gridBoard"),
   miniGrid: document.getElementById("miniGrid"),
+  arenaSection: document.getElementById("arena"),
   algorithmSelect: document.getElementById("algorithmSelect"),
   rowsInput: document.getElementById("rowsInput"),
   colsInput: document.getElementById("colsInput"),
@@ -274,6 +275,14 @@ async function runRaceMode() {
   }
 }
 
+async function runHeroRaceMode() {
+  if (elements.arenaSection) {
+    elements.arenaSection.scrollIntoView({ behavior: "smooth", block: "start" });
+    await sleep(450);
+  }
+  await runRaceMode();
+}
+
 function resetBoard() {
   state.walls.clear();
   state.start = [1, 1];
@@ -306,7 +315,7 @@ function bindEvents() {
   elements.colsInput.addEventListener("change", resizeBoard);
   elements.runSelectedBtn.addEventListener("click", runSelectedAlgorithm);
   elements.runRaceBtn.addEventListener("click", runRaceMode);
-  elements.runRaceHeroBtn.addEventListener("click", runRaceMode);
+  elements.runRaceHeroBtn.addEventListener("click", runHeroRaceMode);
   elements.resetBoardBtn.addEventListener("click", resetBoard);
 }
 

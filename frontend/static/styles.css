@@ -116,6 +116,60 @@ button { cursor: pointer; border: 0; }
   padding: 56px 0 24px;
 }
 
+.hero-copy {
+  max-width: 760px;
+}
+
+.hero-title-block {
+  position: relative;
+  margin: 18px 0 22px;
+  padding: 28px 30px 30px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 32px;
+  background:
+    linear-gradient(135deg, rgba(125, 77, 255, 0.14), rgba(255, 255, 255, 0.03)),
+    rgba(13, 17, 40, 0.72);
+  box-shadow: 0 26px 80px rgba(7, 10, 27, 0.42);
+  overflow: hidden;
+}
+
+.hero-title-block::before {
+  content: "";
+  position: absolute;
+  inset: auto -40px -60px auto;
+  width: 240px;
+  height: 240px;
+  border-radius: 999px;
+  background: rgba(84, 164, 255, 0.16);
+  filter: blur(18px);
+}
+
+.hero-title-block::after {
+  content: "";
+  position: absolute;
+  top: 18px;
+  left: 18px;
+  width: 92px;
+  height: 6px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #8c68ff, #64d4ff);
+}
+
+.hero-tagline {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  margin-bottom: 14px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.07);
+  color: #dcd4ff;
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
 .eyebrow {
   display: inline-flex;
   padding: 8px 12px;
@@ -129,21 +183,25 @@ button { cursor: pointer; border: 0; }
 }
 
 .hero h1 {
-  margin: 18px 0 16px;
+  position: relative;
+  z-index: 1;
+  margin: 0 0 14px;
   max-width: none;
-  font-size: clamp(4.5rem, 11vw, 8.4rem);
-  line-height: 0.88;
+  font-size: clamp(5.2rem, 12vw, 9.2rem);
+  line-height: 0.84;
   letter-spacing: -0.06em;
   text-transform: uppercase;
-  text-shadow: 0 10px 34px rgba(125, 77, 255, 0.22);
+  text-shadow: 0 12px 38px rgba(125, 77, 255, 0.3);
 }
 
 .hero-subtitle {
+  position: relative;
+  z-index: 1;
   max-width: 12ch;
-  margin: 0 0 18px;
+  margin: 0;
   font-family: "Space Grotesk", sans-serif;
-  font-size: clamp(1.5rem, 3vw, 2.65rem);
-  line-height: 1.05;
+  font-size: clamp(1.6rem, 3.2vw, 2.9rem);
+  line-height: 1.02;
   color: #d9dbff;
 }
 
@@ -593,6 +651,10 @@ input:focus {
 
   .hero-subtitle {
     max-width: none;
+  }
+
+  .hero-title-block {
+    padding: 24px 20px 24px;
   }
 
   .compact-grid {

@@ -18,7 +18,7 @@ Pathfinding Arena is an interactive AI algorithm battle game built with:
 ## Run Locally
 
 ```bash
-python app.py
+python backend/app.py
 ```
 
 Then open `http://127.0.0.1:8000`.
@@ -27,10 +27,13 @@ Then open `http://127.0.0.1:8000`.
 
 ```text
 PathFinderArena/
-|-- app.py
+|-- backend/
+|   `-- app.py
+|-- frontend/
+|   |-- index.html
+|   `-- static/
+|       |-- app.js
+|       `-- styles.css
 |-- README.md
-`-- static/
-    |-- app.js
-    |-- index.html
-    `-- styles.css
+`-- .gitignore
 ```

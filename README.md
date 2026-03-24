@@ -1,4 +1,5 @@
-# Pathfinding Arena
+# AI PROJECT 
+Pathfinding Arena
 
 Pathfinding Arena is an interactive AI algorithm battle game built with:
 

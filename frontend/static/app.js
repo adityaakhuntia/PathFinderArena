@@ -1,8 +1,8 @@
 const state = {
-  rows: 12,
-  cols: 16,
+  rows: 6,
+  cols: 10,
   start: [1, 1],
-  goal: [10, 14],
+  goal: [4, 8],
   walls: new Set(),
   currentTool: "wall",
   isAnimating: false,

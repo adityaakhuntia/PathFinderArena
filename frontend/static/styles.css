@@ -118,6 +118,7 @@ button { cursor: pointer; border: 0; }
 
 .hero-copy {
   max-width: 760px;
+  min-width: 0;
 }
 
 .hero-title-block {
@@ -187,9 +188,11 @@ button { cursor: pointer; border: 0; }
   z-index: 1;
   margin: 0 0 14px;
   max-width: none;
-  font-size: clamp(5.2rem, 12vw, 9.2rem);
-  line-height: 0.84;
-  letter-spacing: -0.06em;
+  font-size: clamp(3.9rem, 9vw, 7rem);
+  line-height: 0.9;
+  letter-spacing: -0.05em;
+  word-break: break-word;
+  overflow-wrap: anywhere;
   text-transform: uppercase;
   text-shadow: 0 12px 38px rgba(125, 77, 255, 0.3);
 }

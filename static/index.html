@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pathfinding Arena</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+  <div class="page-shell">
+    <header class="topbar">
+      <a class="brand" href="#home">
+        <span class="brand-mark" aria-hidden="true">
+          <span class="brand-orbit orbit-a"></span>
+          <span class="brand-orbit orbit-b"></span>
+          <span class="brand-core"></span>
+          <span class="brand-trace trace-a"></span>
+          <span class="brand-trace trace-b"></span>
+        </span>
+        <span class="brand-copy">
+          <strong>Pathfinding Arena</strong>
+          <small>Search Algorithms, Reimagined</small>
+        </span>
+      </a>
+      <nav class="topnav">
+        <a href="#features">Features</a>
+        <a href="#arena">Arena</a>
+        <a href="#dashboard">Dashboard</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero" id="home">
+        <div class="hero-copy">
+          <span class="eyebrow">Interactive AI learning platform</span>
+          <h1>Pathfinding Arena</h1>
+          <h2 class="hero-subtitle">Where BFS, DFS, Greedy, and A* battle for the smartest path.</h2>
+          <p>
+            Build custom maps, launch AI races, and compare reasoning, speed, explored nodes, and path quality in real time.
+          </p>
+          <div class="hero-actions">
+            <a class="primary-btn" href="#arena">Launch Arena</a>
+            <button class="ghost-btn" id="runRaceHeroBtn">Start Race Mode</button>
+          </div>
+          <div class="hero-stats">
+            <article>
+              <strong>4</strong>
+              <span>Algorithms</span>
+            </article>
+            <article>
+              <strong>3</strong>
+              <span>Modes</span>
+            </article>
+            <article>
+              <strong>Live</strong>
+              <span>Reasoning Feed</span>
+            </article>
+          </div>
+        </div>
+
+        <div class="hero-panel">
+          <div class="hero-card card-glow">
+            <div class="mini-grid" id="miniGrid"></div>
+            <div class="hero-card-footer">
+              <div>
+                <span class="label">Current favorite</span>
+                <strong id="heroWinner">A* Search</strong>
+              </div>
+              <div class="pill">Optimal + fast</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="feature-section" id="features">
+        <div class="section-heading feature-heading">
+          <span class="eyebrow">Features</span>
+          <h2>Everything that makes Pathfinding Arena stand out.</h2>
+        </div>
+        <div class="feature-strip">
+        <article>
+          <span class="feature-kicker">01</span>
+          <h3>Race Mode</h3>
+          <p>Run all four algorithms on the same board and instantly see who wins on path length, speed, and search effort.</p>
+        </article>
+        <article>
+          <span class="feature-kicker">02</span>
+          <h3>Map Builder</h3>
+          <p>Place walls, reposition the source and goal, resize the grid, and design challenge maps that test different strategies.</p>
+        </article>
+        <article>
+          <span class="feature-kicker">03</span>
+          <h3>Thinking Display</h3>
+          <p>Every run includes a reasoning feed so viewers can understand why each algorithm explores the grid the way it does.</p>
+        </article>
+        <article>
+          <span class="feature-kicker">04</span>
+          <h3>Performance Dashboard</h3>
+          <p>Measure nodes explored, final path length, and execution time to compare optimality and efficiency clearly.</p>
+        </article>
+        <article>
+          <span class="feature-kicker">05</span>
+          <h3>Python-Powered AI</h3>
+          <p>The pathfinding logic runs on the backend in Python, keeping the project true to your AI and algorithm focus.</p>
+        </article>
+        <article>
+          <span class="feature-kicker">06</span>
+          <h3>Presentation Ready</h3>
+          <p>A bold interface, live visual feedback, and classroom-friendly comparisons make the project easier to explain to teachers.</p>
+        </article>
+        </div>
+      </section>
+
+      <section class="workspace" id="arena">
+        <div class="control-panel glass-card">
+          <div class="section-heading">
+            <span class="eyebrow">Arena Controls</span>
+            <h2>Design the grid and choose how the agents compete.</h2>
+          </div>
+
+          <div class="control-group">
+            <label for="algorithmSelect">Algorithm</label>
+            <select id="algorithmSelect">
+              <option value="astar">A* Search</option>
+              <option value="bfs">Breadth-First Search</option>
+              <option value="dfs">Depth-First Search</option>
+              <option value="greedy">Greedy Best-First Search</option>
+            </select>
+          </div>
+
+          <div class="control-group">
+            <span>Builder Tool</span>
+            <div class="tool-row">
+              <button class="tool-btn active" data-tool="wall">Walls</button>
+              <button class="tool-btn" data-tool="start">Start</button>
+              <button class="tool-btn" data-tool="goal">Goal</button>
+              <button class="tool-btn" data-tool="erase">Erase</button>
+            </div>
+          </div>
+
+          <div class="control-group compact-grid">
+            <label>
+              Rows
+              <input type="number" id="rowsInput" min="6" max="20" value="12">
+            </label>
+            <label>
+              Columns
+              <input type="number" id="colsInput" min="8" max="24" value="16">
+            </label>
+          </div>
+
+          <div class="control-group">
+            <span>Modes</span>
+            <div class="action-stack">
+              <button class="primary-btn" id="runSelectedBtn">Run Selected Algorithm</button>
+              <button class="secondary-btn" id="runRaceBtn">Run Race Mode</button>
+              <button class="ghost-btn" id="resetBoardBtn">Reset Board</button>
+            </div>
+          </div>
+
+          <div class="legend">
+            <div><span class="swatch start"></span>Start</div>
+            <div><span class="swatch goal"></span>Goal</div>
+            <div><span class="swatch wall"></span>Obstacle</div>
+            <div><span class="swatch visited"></span>Explored</div>
+            <div><span class="swatch path"></span>Path</div>
+          </div>
+        </div>
+
+        <div class="board-panel glass-card">
+          <div class="board-header">
+            <div>
+              <span class="eyebrow">Grid World</span>
+              <h2>Interactive Pathfinding Board</h2>
+            </div>
+            <div class="status-badge" id="statusBadge">Ready for simulation</div>
+          </div>
+          <div class="grid-board" id="gridBoard"></div>
+        </div>
+      </section>
+
+      <section class="dashboard" id="dashboard">
+        <div class="dashboard-main glass-card">
+          <div class="section-heading">
+            <span class="eyebrow">Comparison Dashboard</span>
+            <h2>Measure how each search strategy behaves.</h2>
+          </div>
+          <div class="results-grid" id="resultsGrid"></div>
+        </div>
+
+        <aside class="insights-panel glass-card">
+          <div class="section-heading">
+            <span class="eyebrow">AI Thinking Display</span>
+            <h2>Reasoning Feed</h2>
+          </div>
+          <div class="insight-summary" id="insightSummary">
+            Select a run to inspect how the algorithm moved through the grid.
+          </div>
+          <div class="reasoning-feed" id="reasoningFeed"></div>
+        </aside>
+      </section>
+    </main>
+  </div>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>
